@@ -1,1 +1,7 @@
-[]
+[
+    {
+        "model-name": "sends",
+        "resource-file": "sends.json",
+        "table-name": "sends"
+    }
+]
