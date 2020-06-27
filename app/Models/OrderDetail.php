@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class OrderDetail extends Model
 {
 
 
@@ -13,7 +13,7 @@ class Category extends Model
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'order_details';
 
     /**
     * The database primary key value.
@@ -31,7 +31,10 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-                  'name'
+                  'product_id',
+                  'order_id',
+                  'sub_total',
+                  'quantity'
               ];
 
     /**
@@ -49,14 +52,32 @@ class Category extends Model
     protected $casts = [];
 
     /**
-     * Get the subCategory for this model.
+     * Get the Product for this model.
      *
-     * @return App\Models\SubCategory
+     * @return App\Models\Product
      */
-    public function sub_category()
+    public function product()
     {
-        return $this->hasOne('App\Models\SubCategory','category_id','id');
+        return $this->belongsTo('App\Models\Product','product_id','id');
     }
+
+    /**
+     * Get the Order for this model.
+     *
+     * @return App\Models\Order
+     */
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order','order_id','id');
+    }
+
+
+    /**
+     * Get created_at in array format
+     *
+     * @param  string  $value
+     * @return array
+     */
 
 
 }

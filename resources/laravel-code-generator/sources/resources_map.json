@@ -1,1 +1,47 @@
-[]
+[
+    {
+        "model-name": "sub_category",
+        "resource-file": "sub_categories.json",
+        "table-name": "sub_categories"
+    },
+    {
+        "model-name": "products",
+        "resource-file": "products.json",
+        "table-name": "products"
+    },
+    {
+        "model-name": "images",
+        "resource-file": "images.json",
+        "table-name": "images"
+    },
+    {
+        "model-name": "rating_products",
+        "resource-file": "rating_products.json",
+        "table-name": "rating_products"
+    },
+    {
+        "model-name": "raiting_produc",
+        "resource-file": "raiting_producs.json",
+        "table-name": "raiting_producs"
+    },
+    {
+        "model-name": "raiting_product",
+        "resource-file": "raiting_products.json",
+        "table-name": "raiting_products"
+    },
+    {
+        "model-name": "RaitingProduct",
+        "resource-file": "raiting_products.json",
+        "table-name": "raiting_product"
+    },
+    {
+        "model-name": "OrderDetail",
+        "resource-file": "order_details.json",
+        "table-name": "order_details"
+    },
+    {
+        "model-name": "Maker",
+        "resource-file": "makers.json",
+        "table-name": "makers"
+    }
+]
