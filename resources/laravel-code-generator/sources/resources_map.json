@@ -43,5 +43,10 @@
         "model-name": "Maker",
         "resource-file": "makers.json",
         "table-name": "makers"
+    },
+    {
+        "model-name": "sends",
+        "resource-file": "sends.json",
+        "table-name": "sends"
     }
 ]
