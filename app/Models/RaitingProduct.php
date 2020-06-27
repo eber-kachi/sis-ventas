@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class RaitingProduct extends Model
 {
 
 
@@ -13,7 +13,7 @@ class Category extends Model
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'raiting_product';
 
     /**
     * The database primary key value.
@@ -31,7 +31,10 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-                  'name'
+                  'product_id',
+                  'user_id',
+                  'comentary',
+                  'start'
               ];
 
     /**
@@ -49,13 +52,23 @@ class Category extends Model
     protected $casts = [];
 
     /**
-     * Get the subCategory for this model.
+     * Get the Product for this model.
      *
-     * @return App\Models\SubCategory
+     * @return App\Models\Product
      */
-    public function sub_category()
+    public function product()
     {
-        return $this->hasOne('App\Models\SubCategory','category_id','id');
+        return $this->belongsTo('App\Models\Product','product_id','id');
+    }
+
+    /**
+     * Get the User for this model.
+     *
+     * @return App\Models\User
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User','user_id','id');
     }
 
 

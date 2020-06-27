@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Sends extends Model
 {
 
 
@@ -13,7 +13,7 @@ class Category extends Model
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'sends';
 
     /**
     * The database primary key value.
@@ -31,7 +31,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-                  'name'
+                  'cost'
               ];
 
     /**
@@ -49,14 +49,13 @@ class Category extends Model
     protected $casts = [];
 
     /**
-     * Get the subCategory for this model.
+     * Get the order for this model.
      *
-     * @return App\Models\SubCategory
+     * @return App\Models\Order
      */
-    public function sub_category()
+    public function order()
     {
-        return $this->hasOne('App\Models\SubCategory','category_id','id');
+        return $this->hasOne('App\Models\Order','send_id','id');
     }
-
 
 }

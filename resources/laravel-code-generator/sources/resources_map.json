@@ -1,1 +1,82 @@
-[]
+[
+    {
+        "model-name": "sub_category",
+        "resource-file": "sub_categories.json",
+        "table-name": "sub_categories"
+    },
+    {
+        "model-name": "products",
+        "resource-file": "products.json",
+        "table-name": "products"
+    },
+    {
+        "model-name": "images",
+        "resource-file": "images.json",
+        "table-name": "images"
+    },
+    {
+        "model-name": "rating_products",
+        "resource-file": "rating_products.json",
+        "table-name": "rating_products"
+    },
+    {
+        "model-name": "raiting_produc",
+        "resource-file": "raiting_producs.json",
+        "table-name": "raiting_producs"
+    },
+    {
+        "model-name": "raiting_product",
+        "resource-file": "raiting_products.json",
+        "table-name": "raiting_products"
+    },
+    {
+        "model-name": "RaitingProduct",
+        "resource-file": "raiting_products.json",
+        "table-name": "raiting_product"
+    },
+    {
+        "model-name": "OrderDetail",
+        "resource-file": "order_details.json",
+        "table-name": "order_details"
+    },
+    {
+        "model-name": "Maker",
+        "resource-file": "makers.json",
+        "table-name": "makers"
+    },
+    {
+        "model-name": "Sends",
+        "resource-file": "sends.json",
+        "table-name": "sends"
+    },
+    {
+        "model-name": "Orders",
+        "resource-file": "orders.json",
+        "table-name": "orders"
+    },
+    {
+        "model-name": "StatusOrder",
+        "resource-file": "status_orders.json",
+        "table-name": "status_order"
+    },
+    {
+        "model-name": "Store",
+        "resource-file": "stores.json",
+        "table-name": "stores"
+    },
+    {
+        "model-name": "RaitingStore",
+        "resource-file": "raiting_store.json",
+        "table-name": "raiting_store"
+    },
+    {
+        "model-name": "Roles",
+        "resource-file": "roles.json",
+        "table-name": "roles"
+    },
+    {
+        "model-name": "UserStatusOder",
+        "resource-file": "user_status_orders.json",
+        "table-name": "user_status_order"
+    }
+]

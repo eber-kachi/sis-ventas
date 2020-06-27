@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class SubCategory extends Model
 {
 
 
@@ -13,13 +13,13 @@ class Category extends Model
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'sub_categories';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
@@ -31,8 +31,9 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-                  'name'
-              ];
+        'category_id',
+        'name'
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -49,14 +50,22 @@ class Category extends Model
     protected $casts = [];
 
     /**
-     * Get the subCategory for this model.
+     * Get the Category for this model.
      *
-     * @return App\Models\SubCategory
+     * @return App\Models\Category
      */
-    public function sub_category()
+    public function category()
     {
-        return $this->hasOne('App\Models\SubCategory','category_id','id');
+        return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
 
-
+    /**
+     * Get the product for this model.
+     *
+     * @return App\Models\Product
+     */
+    public function product()
+    {
+        return $this->hasOne('App\Models\Product', 'sub_category_id', 'id');
+    }
 }
