@@ -12,9 +12,14 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->truncate();
+//        DB::table('roles')->truncate();
         DB::table('roles')->insert([
             'name' => 'Admin',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'User',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);

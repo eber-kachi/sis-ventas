@@ -45,8 +45,38 @@
         "table-name": "makers"
     },
     {
-        "model-name": "sends",
+        "model-name": "Sends",
         "resource-file": "sends.json",
         "table-name": "sends"
+    },
+    {
+        "model-name": "Orders",
+        "resource-file": "orders.json",
+        "table-name": "orders"
+    },
+    {
+        "model-name": "StatusOrder",
+        "resource-file": "status_orders.json",
+        "table-name": "status_order"
+    },
+    {
+        "model-name": "Store",
+        "resource-file": "stores.json",
+        "table-name": "stores"
+    },
+    {
+        "model-name": "RaitingStore",
+        "resource-file": "raiting_store.json",
+        "table-name": "raiting_store"
+    },
+    {
+        "model-name": "Roles",
+        "resource-file": "roles.json",
+        "table-name": "roles"
+    },
+    {
+        "model-name": "UserStatusOder",
+        "resource-file": "user_status_orders.json",
+        "table-name": "user_status_order"
     }
 ]
