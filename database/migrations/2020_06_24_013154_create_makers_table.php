@@ -16,9 +16,9 @@ class CreateMakersTable extends Migration
         Schema::create('makers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->string('name');
-            $table->string('location');
-            $table->string('phone');
+            $table->string('name')->nullable();
+            $table->string('location')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });

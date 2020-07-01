@@ -18,10 +18,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('send_id');
-            $table->integer('total_amount');
-            $table->integer('total_quantity');
-            $table->string('location');
-            $table->boolean('active');
+            $table->integer('total_amount')->nullable();
+            $table->integer('total_quantity')->nullable();
+            $table->string('location')->nullable();
+            $table->boolean('active')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('send_id')->references('id')->on('sends')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
