@@ -16,10 +16,10 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name')->unique();
-            $table->string('location');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('name')->nullable();
+            $table->string('location')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

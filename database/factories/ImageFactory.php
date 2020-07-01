@@ -10,6 +10,6 @@ $factory->define(Image::class, function (Faker $faker) {
         'product_id'=>$faker->numberBetween(1,100),
         'title' => $faker->title,
         'image' => $faker->imageUrl(),
-        'is_main' => $faker->boolean
+        'is_main' => $faker->randomNumber([1,0])
     ];
 });
