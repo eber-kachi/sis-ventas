@@ -21,10 +21,6 @@ class CreateProductsTable extends Migration
             $table->integer('price')->nullable();
             $table->string('description',500)->nullable();
             $table->integer('stock')->nullable();
-            $table->string('title')->unique();
-            $table->integer('price');
-            $table->string('description',500);
-            $table->integer('stock');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
