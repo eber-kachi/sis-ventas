@@ -16,6 +16,7 @@ class CreateSendsTable extends Migration
         Schema::create('sends', function (Blueprint $table) {
             $table->id();
             $table->integer('cost')->nullable();
+            $table->integer('total_amount')->nullable();
             $table->timestamps();
         });
     }
