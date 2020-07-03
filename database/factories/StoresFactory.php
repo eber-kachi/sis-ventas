@@ -10,6 +10,7 @@ $factory->define(\App\Models\Store::class, function (Faker $faker) {
         'user_id'=>$faker->numberBetween(1, 5),
         'email'=>$faker->email,
         'name'=>$faker->name,
+        'location'=>$faker->streetName,
         'phone'=>$faker->phoneNumber,
 
     ];

@@ -34,7 +34,7 @@ class Image extends Model
                   'product_id',
                   'title',
                   'image',
-                  'ismain'
+                  'is_main'
               ];
 
     /**

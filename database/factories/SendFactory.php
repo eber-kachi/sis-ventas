@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Sends::class, function (Faker $faker) {
     return [
-        'cost'=> $faker->randomElement(['sends1','sends2', 'sends3'])
+        'cost'=> $faker->randomNumber(2),
+        'total_amount'=> $faker->randomNumber(2)
     ];
 });

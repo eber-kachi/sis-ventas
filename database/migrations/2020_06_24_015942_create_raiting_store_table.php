@@ -17,8 +17,8 @@ class CreateRaitingStoreTable extends Migration
             $table->id();
             $table->unsignedBigInteger('store_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('comentary',500);
-            $table->integer('start');
+            $table->string('comentary',500)->nullable();
+            $table->integer('start')->nullable();
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
