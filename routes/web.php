@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.app'); // para visualizar el cambio va a app
+    return view('layouts.clienteTeplate'); // para visualizar el cambio va a app
 });
