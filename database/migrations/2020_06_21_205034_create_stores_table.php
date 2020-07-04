@@ -16,11 +16,14 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('categorie_store_id');
             $table->string('name')->nullable();
             $table->string('location')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->text('description')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('categorie_store_id')->references('id')->on('categories_store')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
