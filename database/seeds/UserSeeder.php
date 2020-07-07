@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
 //        DB::table('users')->truncate();
         DB::table('users')->insert([
-            'full_name' => 'Admin',
+            'name' => 'Admin',
             'ci' => '1321653',
             'phone' => '132216354',
             'email' => 'admin@gmail.com',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('users')->insert([
-            'full_name' => 'Eric',
+            'name' => 'Eric',
             'ci' => '132165243',
             'phone' => '13221654',
             'email' => 'eric@gmail.com',
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('users')->insert([
-            'full_name' => 'Raul',
+            'name' => 'Raul',
             'ci' => '133216542',
             'phone' => '133216544',
             'email' => 'raul@gmail.com',
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('users')->insert([
-            'full_name' => 'Karla',
+            'name' => 'Karla',
             'ci' => '13212654',
             'phone' => '13321654',
             'email' => 'karla@gmail.com',
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('users')->insert([
-            'full_name' => 'assiel',
+            'name' => 'assiel',
             'ci' => '13221654',
             'phone' => '13213654',
             'email' => 'assiel@gmail.com',
@@ -69,7 +69,7 @@ class UserSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('users')->insert([
-            'full_name' => 'ana',
+            'name' => 'ana',
             'ci' => '123321654',
             'phone' => '13216354',
             'email' => 'ana@gmail.com',
