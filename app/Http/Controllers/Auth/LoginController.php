@@ -49,7 +49,7 @@ class LoginController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-    
+
     /**
      * Create a new controller instance.
      *
@@ -58,17 +58,21 @@ class LoginController extends Controller
     public function handleGoogleCallback()
     {
         try {
-  
+
             $user = Socialite::driver('google')->stateless()->user();
+<<<<<<< HEAD
    
+=======
+            // $user = Socialite::driver('google')->user();
+>>>>>>> 1f2b34a80aebc8cb5814d6dce216d2a493f9a757
             $finduser = User::where('google_id', $user->id)->first();
-   
+
             if($finduser){
-   
+
                 Auth::login($finduser);
-  
+
                 return redirect('/home');
-   
+
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
@@ -76,12 +80,11 @@ class LoginController extends Controller
                     'google_id'=> $user->id,
                     'password' => encrypt('123456dummy')
                 ]);
-  
                 Auth::login($newUser);
-   
+
                 return redirect('/home');
             }
-  
+
         } catch (Exception $e) {
             dd($e->getMessage());
         }
