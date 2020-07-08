@@ -60,12 +60,8 @@ class LoginController extends Controller
         try {
 
             $user = Socialite::driver('google')->stateless()->user();
-<<<<<<< HEAD
    
-=======
-            // $user = Socialite::driver('google')->user();
->>>>>>> 1f2b34a80aebc8cb5814d6dce216d2a493f9a757
-            $finduser = User::where('google_id', $user->id)->first();
+            // $finduser = User::where('google_id', $user->id)->first();
 
             if($finduser){
 
