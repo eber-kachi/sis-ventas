@@ -33,7 +33,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Nombre" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input class="form-control" placeholder="Nombre completo" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                   </div>
                 </div>
                 <div class="form-group">
@@ -42,6 +42,24 @@
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
                     <input class="form-control" placeholder="Email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                  </div>
+                </div>
+{{--                Phone--}}
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Telefono" type="text" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                  </div>
+                </div>
+{{--                CI --}}
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-address-card"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Carnet de Identidad" type="text" name="ci" value="{{ old('ci') }}" required autocomplete="ci">
                   </div>
                 </div>
                 <div class="form-group">

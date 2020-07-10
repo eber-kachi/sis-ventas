@@ -60,7 +60,7 @@ class LoginController extends Controller
         try {
 
             $user = Socialite::driver('google')->stateless()->user();
-   
+
             $finduser = User::where('google_id', $user->id)->first();
 
             if($finduser){
@@ -70,19 +70,22 @@ class LoginController extends Controller
                 return redirect('/home');
 
             }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'password' => encrypt('123456dummy')
-                ]);
-                Auth::login($newUser);
-
-                return redirect('/home');
+                $newUser = new User();
+                $newUser->name = $user->name;
+                $newUser->email = $user->email;
+                $newUser->google_id= $user->id;
+                $newUser->password = null;
+                $this->fillMissingInfo($newUser);
+//                Auth::login($newUser);
+//
+//                return redirect('/home');
             }
 
         } catch (Exception $e) {
             dd($e->getMessage());
         }
+    }
+    public function fillMissingInfo($newUser) {
+        return view('auth.registerData', compact($newUser));
     }
 }
