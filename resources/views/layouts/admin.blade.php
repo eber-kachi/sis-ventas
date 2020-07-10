@@ -391,8 +391,7 @@
 {{--        </div>--}}
 {{--      </div>--}}
 {{--    </footer>--}}
-{{--  </div>--}}
-{{--</div>--}}
+  </div>
 <!-- Argon Scripts -->
 <!-- Core -->
 <script src="{{asset('vendor/jquery/dist/jquery.min.js') }}"></script>
