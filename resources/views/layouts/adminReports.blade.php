@@ -16,6 +16,7 @@
   <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
   <!-- Argon CSS -->
   <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0')}}" rel="stylesheet">
+  <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,7 +27,7 @@
     <!-- Brand -->
     <div class="sidenav-header  align-items-center">
       <a class="navbar-brand" href="javascript:void(0)">
-        <img src='img/brand/blue.png' class="navbar-brand-img" alt="...">
+        <img src="{{'/img/brand/blue.png'}}" class="navbar-brand-img" alt="...">
       </a>
     </div>
     <div class="navbar-inner">
@@ -36,20 +37,20 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="{{route('categories.category.index')}}">
-              <i class="ni ni-tv-2 text-primary"></i>
-              <span class="nav-link-text">Category</span>
+              <i class="fa fa-list-alt text-primary"></i>
+              <span class="nav-link-text">Categoria</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="icons.html">
-              <i class="ni ni-planet text-orange"></i>
-              <span class="nav-link-text">Subcategory</span>
+              <i class="fa fa-list-alt text-orange"></i>
+              <span class="nav-link-text">SubCategoria</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="map.html">
-              <i class="ni ni-pin-3 text-primary"></i>
-              <span class="nav-link-text">Product</span>
+              <i class="fa fa-shopping-basket text-primary"></i>
+              <span class="nav-link-text">Producto</span>
             </a>
           </li>
           <li class="nav-item">
@@ -84,23 +85,22 @@
           </li>
         </ul>
         <!-- Divider -->
-{{--        <hr class="my-3">--}}
-        <!-- Heading -->
-{{--        <h6 class="navbar-heading p-0 text-muted">--}}
-{{--          <span class="docs-normal">Documentation</span>--}}
-{{--        </h6>--}}
-        <!-- Navigation -->
+      {{--        <hr class="my-3">--}}
+      <!-- Heading -->
+      {{--        <h6 class="navbar-heading p-0 text-muted">--}}
+      {{--          <span class="docs-normal">Documentation</span>--}}
+      {{--        </h6>--}}
+      <!-- Navigation -->
       </div>
     </div>
   </div>
 </nav>
 <!-- Main content -->
 <div class="main-content" id="panel">
-  <!-- Topnav -->
-  <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+  <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Navbar links -->
+        <!-- Navbar links -->
         <ul class="navbar-nav align-items-center  ml-md-auto ">
 
         </ul>
@@ -138,42 +138,37 @@
     </div>
   </nav>
   <!-- Header -->
-<!-- Header -->
-@yield('content')
-  <!-- Footer -->
-{{--    <footer class="footer pt-0">--}}
-{{--      <div class="row align-items-center justify-content-lg-between">--}}
-{{--        <div class="col-lg-6">--}}
-{{--          <div class="copyright text-center  text-lg-left  text-muted">--}}
-{{--            &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>--}}
-{{--          </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-lg-6">--}}
-{{--          <ul class="nav nav-footer justify-content-center justify-content-lg-end">--}}
-{{--            <li class="nav-item">--}}
-{{--              <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item">--}}
-{{--              <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item">--}}
-{{--              <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item">--}}
-{{--              <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>--}}
-{{--            </li>--}}
-{{--          </ul>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </footer>--}}
+  <!-- Header -->
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      @yield('content')
+    </div>
+  </div>
+</div>
 <!-- Argon Scripts -->
 <!-- Core -->
+
 <script src="{{asset('vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 <!-- Argon JS -->
 <script src="{{asset('js/argon.js?v=1.0.0') }}"></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+@yield('script')
 </body>
 
 </html>
+
 
