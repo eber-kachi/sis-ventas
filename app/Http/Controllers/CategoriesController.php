@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoriaRequest;
+use App\Http\Requests\CategoriesRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Exception;
@@ -40,19 +42,13 @@ class CategoriesController extends Controller
      *
      * @return Illuminate\Http\RedirectResponse | Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(CategoriesRequest $request)
     {
-        try {
-            $data = $this->getData($request);
-
-            Category::create($data);
-
+        $categoriaCrear = new Category();
+        $categoriaCrear->name = ucwords($request->name);
+        $categoriaCrear->save();
             return redirect()->route('categories.category.index')
-                ->with('success_message', 'Category was successfully added.');
-        } catch (Exception $exception) {
-            return back()->withInput()
-                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
-        }
+                ->with('success_message', 'La categoría se agregó con éxito.');
     }
 
     /**
@@ -92,22 +88,14 @@ class CategoriesController extends Controller
      *
      * @return Illuminate\Http\RedirectResponse | Illuminate\Routing\Redirector
      */
-    public function update($id, Request $request)
+    public function update($id, CategoriesRequest $request)
     {
-        try {
-
-            $data = $this->getData($request);
-
             $category = Category::findOrFail($id);
-            $category->update($data);
+            $category->name = $request->name;
+            $category->save();
 
             return redirect()->route('categories.category.index')
-                ->with('success_message', 'Category was successfully updated.');
-        } catch (Exception $exception) {
-
-            return back()->withInput()
-                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
-        }
+                ->with('success_message', 'La categoría se actualizo con éxito.');
     }
 
     /**
@@ -124,11 +112,11 @@ class CategoriesController extends Controller
             $category->delete();
 
             return redirect()->route('categories.category.index')
-                ->with('success_message', 'Category was successfully deleted.');
+                ->with('success_message', 'La categoría se elimino con éxito.');
         } catch (Exception $exception) {
 
             return back()->withInput()
-                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+                ->withErrors(['unexpected_error' => 'Se produjo un error inesperado al intentar procesar su solicitud.']);
         }
     }
 
@@ -142,7 +130,7 @@ class CategoriesController extends Controller
     protected function getData(Request $request)
     {
         $rules = [
-                'name' => 'required|string|min:1|max:255',
+                'name' => 'required|string|min:1|max:3',
         ];
 
         $data = $request->validate($rules);

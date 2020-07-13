@@ -10,21 +10,19 @@
           <!-- Light table -->
           <div class="panel panel-default">
             <div class="panel-body">
-              @if ($errors->any())
-                <ul class="alert alert-danger">
-                  @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-              @endif
-              <form method="POST" action="{{ route('categories.category.store') }}" accept-charset="UTF-8" id="create_category_form" name="create_category_form" class="form-horizontal">
+              <form method="POST" action="{{ route('categories.category.store') }}" accept-charset="UTF-8" id="create_category_form" name="create_category_form" class="form-horizontal @error('name') is-invalid @enderror">
                 {{ csrf_field() }}
+                @error('name')
+                <ul class="alert alert-danger">
+                    <li>{{ $message }}</li>
+                </ul>
+                @enderror
                 @include ('categories.form', [
                                             'category' => null,
                                           ])
                 <div class="form-group">
                   <div class="col-md-offset-2 col-md-10">
-                    <input class="btn btn-primary" type="submit" value="Add">
+                    <input class="btn btn-primary" type="submit" value="Guardar">
                   </div>
                 </div>
               </form>
