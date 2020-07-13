@@ -63,22 +63,20 @@ class LoginController extends Controller
 
             $finduser = User::where('google_id', $user->id)->first();
 
+            // If the user exits
             if($finduser){
 
                 Auth::login($finduser);
 
                 return redirect('/home');
-
+            // If the user is registering
             }else{
                 $newUser = new User();
                 $newUser->name = $user->name;
                 $newUser->email = $user->email;
                 $newUser->google_id= $user->id;
                 $newUser->password = null;
-                $this->fillMissingInfo($newUser);
-//                Auth::login($newUser);
-//
-//                return redirect('/home');
+                return view('auth.registerData', compact('newUser'));
             }
 
         } catch (Exception $e) {
@@ -86,6 +84,6 @@ class LoginController extends Controller
         }
     }
     public function fillMissingInfo($newUser) {
-        return view('auth.registerData', compact($newUser));
+
     }
 }

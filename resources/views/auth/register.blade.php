@@ -23,9 +23,12 @@
             <div class="card-body px-lg-5 py-lg-5">
             @if ($errors->any())
               <div class="alert alert-danger" role="alert">
-                <strong>Error!</strong> {{$errors->first()}}
+                <strong>Error!</strong>
+                @foreach($errors->all() as $error)
+                  <li>{{$error}}</li>
+                @endforeach
               </div>
-              @endif
+            @endif
               <form role="form" method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
@@ -36,7 +39,7 @@
                     <input class="form-control" placeholder="Nombre completo" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group ">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
@@ -50,7 +53,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-phone"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Telefono" type="text" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                    <input class="form-control" placeholder="Telefono" type="text" name="phone" value="{{ old('phone') }}" maxlength="8" required autocomplete="phone">
                   </div>
                 </div>
 {{--                CI --}}
@@ -59,7 +62,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-address-card"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Carnet de Identidad" type="text" name="ci" value="{{ old('ci') }}" required autocomplete="ci">
+                    <input class="form-control" placeholder="Carnet de Identidad" type="text" name="ci" value="{{ old('ci') }}" maxlength="7" required autocomplete="ci">
                   </div>
                 </div>
                 <div class="form-group">

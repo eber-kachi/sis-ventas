@@ -29,6 +29,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
+
         return view('categories.create');
     }
 
@@ -49,7 +50,6 @@ class CategoriesController extends Controller
             return redirect()->route('categories.category.index')
                 ->with('success_message', 'Category was successfully added.');
         } catch (Exception $exception) {
-
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }
