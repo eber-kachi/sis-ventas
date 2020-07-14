@@ -36,10 +36,17 @@
         <!-- Nav items -->
         <ul class="navbar-nav">
           <li class="nav-item">
+            @if(Auth::user()->role_id ===3)
             <a class="nav-link" href="{{route('categories.category.index')}}">
               <i class="fa fa-list-alt text-primary"></i>
               <span class="nav-link-text">Categoria</span>
             </a>
+            @else
+              <a class="nav-link" href="">
+                <i class="fa fa-list-alt text-primary"></i>
+                <span class="nav-link-text">Tiendas</span>
+              </a>
+            @endif
           </li>
           <li class="nav-item">
             <a class="nav-link" href="icons.html">

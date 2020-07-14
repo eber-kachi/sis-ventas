@@ -2,7 +2,7 @@
 
 @section('content')
       <div class="col-sm-5">
-        <div class="card">
+        <div class="card card-responsive">
           <!-- Card header -->
           <div class="card-header border-0">
             <h3 class="mb-0">Nueva Categoria</h3>
@@ -64,7 +64,7 @@
                   <tr>
                     <td>{{ $category->name }}</td>
                     <td>
-                      <a href="{{ route('categories.category.edit', $category->id ) }}" class="btn btn-primary" title="Edit Category">
+                      <a href="{{ route('categories.category.edit', $category->id ) }}" class="btn btn-primary" title="Editar Categoria">
                         <span class="fas fa-pencil-alt" aria-hidden="true"></span>
                       </a>
                     </td>
@@ -72,7 +72,7 @@
                       <form method="POST" action="{!! route('categories.category.destroy', $category->id) !!}" accept-charset="UTF-8">
                         <input name="_method" value="DELETE" type="hidden">
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-danger" title="Delete Category" onclick="return confirm('Desea Eliminar?')">
+                        <button type="submit" class="btn btn-danger" title="Eliminar Categoria" onclick="return confirm('Desea Eliminar?')">
                           <span class="	fas fa-trash-alt" aria-hidden="true"></span>
                         </button>
                       </form>
