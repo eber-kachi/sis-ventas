@@ -45,6 +45,7 @@ Route::group([
     Route::delete('/category/{category}','CategoriesController@destroy')
          ->name('categories.category.destroy');
 });
+
 Route::group([
     'prefix' => 'store',
 ], function () {
@@ -61,3 +62,21 @@ Route::group([
 
 });
 
+Route::group([
+    'prefix' => 'products',
+], function () {
+    Route::get('/', 'ProductsController@index')
+         ->name('products.product.index');
+    Route::get('/create','ProductsController@create')
+         ->name('products.product.create');
+    Route::get('/show/{product}','ProductsController@show')
+         ->name('products.product.show');
+    Route::get('/{product}/edit','ProductsController@edit')
+         ->name('products.product.edit');
+    Route::post('/', 'ProductsController@store')
+         ->name('products.product.store');
+    Route::put('product/{product}', 'ProductsController@update')
+         ->name('products.product.update');
+    Route::delete('/product/{product}','ProductsController@destroy')
+         ->name('products.product.destroy');
+});

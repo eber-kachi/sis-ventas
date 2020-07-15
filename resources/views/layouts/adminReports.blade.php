@@ -15,7 +15,7 @@
   <link href="{{ asset('vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
   <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0')}}" rel="stylesheet">
+  <link type="text/css" href="{{ asset('css/argon.css')}}" rel="stylesheet">
   <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -107,52 +107,52 @@
 <div class="main-content" id="panel">
   <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <!-- Navbar links -->
-        <ul class="navbar-nav align-items-center  ml-md-auto ">
-
+        <ul class="d-xl-block d-none">
+{{--         DONT DELETE FOR THE GRID  --}}
         </ul>
-        <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
-          @guest
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @if (Route::has('register'))
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-              </li>
-            @endif
-          @else
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-              </a>
-
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bolder" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-                </form>
-              </div>
-            </li>
-          @endguest
+                {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav d-lg-block d-xl-none">
+          <li class="nav-item">
+            <button class="btn btn-primary" id="hideOrShow">
+              <i class="fas fa-bars"></i>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- Header -->
-  <!-- Header -->
-  <div class="header bg-primary pb-6">
+  <div class="header bg-primary pb-6" >
     <div class="container-fluid">
       <div class="header-body">
         <div class="row align-items-center py-4">
           <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Default</li>
+              </ol>
             </nav>
           </div>
         </div>
@@ -161,24 +161,41 @@
   </div>
   <!-- Page content -->
   <div class="container-fluid mt--6">
-    <div class="row">
       @yield('content')
-    </div>
   </div>
 </div>
+
+</body>
+
+</html>
+
 <!-- Argon Scripts -->
 <!-- Core -->
-
 <script src="{{asset('vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{asset('vendor/js-cookie/js.cookie.js') }}"></script>
+<script src="{{asset('vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
+<script src="{{asset('vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
 <!-- Argon JS -->
-<script src="{{asset('js/argon.js?v=1.0.0') }}"></script>
+<script src="{{asset('js/argon.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        let sidenav = $('body');
+        $("#hideOrShow").click(function () {
+            if (sidenav.attr('class') === 'g-sidenav-hidden' || sidenav.attr('class') === 'g-sidenav-show g-sidenav-hidden') {
+                sidenav.attr('class', 'g-sidenav-show nav-open g-sidenav-hidden');
+            } else {
+                sidenav.attr('class', 'g-sidenav-show g-sidenav-hidden');
+            }
+            // g-sidenav-show g-sidenav-hidden
+        });
+    });
+</script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 @yield('script')
 </body>
 </html>
-
 
 
 
