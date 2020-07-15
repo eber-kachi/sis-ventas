@@ -55,8 +55,12 @@ Route::group([
         ->name('stores.store.indexStore');
     Route::get('/create','StoreController@create')
         ->name('stores.store.create');
+    Route::get('/{store}/edit','StoreController@edit')
+        ->name('stores.store.edit');
     Route::post('/', 'StoreController@store')
         ->name('stores.store');
+    Route::put('stores/{store}', 'StoreController@update')
+        ->name('stores.store.update');
     Route::delete('/view/{store}','StoreController@destroy')
         ->name('stores.store.destroy');
 

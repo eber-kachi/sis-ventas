@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRequest;
 use App\Models\CategoryStore;
 use App\Models\Store;
 use App\User;
@@ -51,7 +52,8 @@ class StoreController extends Controller
      */
     public function create()
     {
-        $user = User::where('role_id',3)->get();
+        $user = User::where('role_id',2)->get();
+//        $user = User::whereBetween('role_id',array(2,3))->get();
         $store = CategoryStore::all();
         return view('stores.create',compact('user','store'));
     }
@@ -62,7 +64,7 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $stores = new Store();
         $stores->user_id = $request->user_id;
@@ -74,9 +76,9 @@ class StoreController extends Controller
         $stores->description = $request->description;
         $stores->save();
 
-        $user = User::findOrFail($stores->user_id);
-        $user->role_id = 2;
-        $user->save();
+//        $user = User::findOrFail($stores->user_id);
+//        $user->role_id = 2;
+//        $user->save();
 
         return redirect()->route('stores.store.index')
             ->with('success_message', 'La Tienda se agregó con éxito.');
@@ -91,7 +93,7 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -102,7 +104,17 @@ class StoreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $stores = Store::findOrFail($id);
+        $user = User::where('role_id',2)->get();
+        $store = CategoryStore::all();
+
+        $relation = DB::table('categories_store')
+            ->join('stores','categories_store.id','=','stores.categorie_store_id')
+            ->join('users','stores.user_id','=','users.id')
+            ->select('users.id as user_id','users.name as name','categories_store.id as categorie_store_id','categories_store.name as category')
+            ->where('stores.id',$id)->get();
+
+        return view('stores.edit',compact('store','user','stores','relation'));
     }
 
     /**
@@ -112,9 +124,21 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRequest $request, $id)
     {
-        //
+        $stores = Store::findorFail($id);
+        $stores->user_id = $request->user_id;
+        $stores->categorie_store_id = $request->categorie_store_id;
+        $stores->name = ucwords($request->name);
+        $stores->location = ucwords($request->location);
+        $stores->email = $request->email;
+        $stores->phone = $request->phone;
+        $stores->description = $request->description;
+        $stores->save();
+
+        return redirect()->route('stores.store.index')
+            ->with('success_message', 'La Tienda se actualizo con éxito.');
+
     }
 
     /**
@@ -127,12 +151,12 @@ class StoreController extends Controller
     {
         try {
             $store = Store::findOrFail($id);
-            $user = User::findOrFail($store->user_id);
-            $user->role_id = 3;
-            $user->save();
+//            $user = User::findOrFail($store->user_id);
+//            $user->role_id = 3;
+//            $user->save();
             $store->delete();
             return redirect()->route('stores.store.index')
-                ->with('success_message', 'La categoría se elimino con éxito.');
+                ->with('success_message', 'La Tienda se elimino con éxito.');
         } catch (Exception $exception) {
 
             return back()->withInput()

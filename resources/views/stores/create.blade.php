@@ -1,19 +1,15 @@
 @extends('layouts.adminReports')
 
 @section('content')
-  <div class="col">
+  <div class="col-md-10">
     <div class="card">
       <!-- Card header -->
       <div class="card-header border-0">
+        <h3>Nueva Tienda</h3>
       </div>
       <div class="card-body">
-        <form method="POST" action="{{route('stores.store')}}" accept-charset="UTF-8" id="create_category_form" name="create_category_form" class="form-horizontal @error('name') is-invalid @enderror">
+        <form method="POST" action="{{route('stores.store')}}" accept-charset="UTF-8" id="create_category_form" name="create_category_form" class="form-horizontal">
           {{ csrf_field() }}
-          @error('name')
-          <ul class="alert alert-danger">
-            <li>{{ $message }}</li>
-          </ul>
-          @enderror
           @include ('stores.form', [
                                       'category' => null,
                                     ])
