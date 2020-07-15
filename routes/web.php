@@ -45,3 +45,19 @@ Route::group([
     Route::delete('/category/{category}','CategoriesController@destroy')
          ->name('categories.category.destroy');
 });
+Route::group([
+    'prefix' => 'store',
+], function () {
+    Route::get('/', 'StoreController@index')
+        ->name('stores.store.index');
+    Route::get('/view/{store}', 'StoreController@indexStore')
+        ->name('stores.store.indexStore');
+    Route::get('/create','StoreController@create')
+        ->name('stores.store.create');
+    Route::post('/', 'StoreController@store')
+        ->name('stores.store');
+    Route::delete('/view/{store}','StoreController@destroy')
+        ->name('stores.store.destroy');
+
+});
+

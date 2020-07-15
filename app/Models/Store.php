@@ -32,6 +32,7 @@ class Store extends Model
      */
     protected $fillable = [
                   'user_id',
+                  'categorie_store_id',
                   'name',
                   'location',
                   'email',
@@ -82,4 +83,13 @@ class Store extends Model
         return $this->hasOne('App\Models\RaitingStore','store_id','id');
     }
 
+    public function storeImage()
+    {
+        return $this->hasOne('App\Models\StoreImage','store_id','id');
+    }
+
+    public function categoryStore()
+    {
+        return $this->belongsTo('App\Models\CategoryStore','categorie_store_id','id');
+    }
 }

@@ -17,6 +17,7 @@
   <!-- Argon CSS -->
   <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0')}}" rel="stylesheet">
   <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -173,9 +174,11 @@
 <!-- Argon JS -->
 <script src="{{asset('js/argon.js?v=1.0.0') }}"></script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 @yield('script')
 </body>
-
 </html>
+
+
 
 
