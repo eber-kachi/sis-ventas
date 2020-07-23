@@ -23,10 +23,7 @@ class StoreController extends Controller
 
     public function index()
     {
-        $store = DB::table('users')
-            ->join('stores','users.id','=','stores.user_id')
-            ->select('stores.name as name','users.name as user','stores.phone as phone','stores.id as id')
-            ->where('users.role_id',2)->get();
+        $store = Store::with('user')->get();
         $categoryStore = CategoryStore::all();
         return view('stores.index',compact('store','categoryStore'));
     }
@@ -34,14 +31,7 @@ class StoreController extends Controller
     public function indexStore($id)
     {
         $categoryStore = CategoryStore::all();
-        $store = DB::table('users')
-            ->join('stores','users.id','=','stores.user_id')
-            ->select('stores.name as name','users.name as user','stores.phone as phone','stores.id as id')
-            ->where([
-                'users.role_id'=>2,
-                'stores.categorie_store_id'=>$id
-            ])->get();
-
+        $store = Store::with('user')->where('categorie_store_id',$id)->get();
         return view('stores.storeIndex',compact('categoryStore','store'));
     }
 
@@ -53,8 +43,7 @@ class StoreController extends Controller
     public function create()
     {
         $user = User::where('role_id',2)->get();
-//        $user = User::whereBetween('role_id',array(2,3))->get();
-        $store = CategoryStore::all();
+        $store = CategoryStore::pluck('name','id')->all();
         return view('stores.create',compact('user','store'));
     }
 
@@ -64,25 +53,18 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
-        $stores = new Store();
-        $stores->user_id = $request->user_id;
-        $stores->categorie_store_id = $request->categorie_store_id;
-        $stores->name = ucwords($request->name);
-        $stores->location = ucwords($request->location);
-        $stores->email = $request->email;
-        $stores->phone = $request->phone;
-        $stores->description = $request->description;
-        $stores->save();
-
-//        $user = User::findOrFail($stores->user_id);
-//        $user->role_id = 2;
-//        $user->save();
-
+        try {
+            $data = $this->getData($request);
+            Store::create($data);
+//            return response()->json($data, 201);
         return redirect()->route('stores.store.index')
             ->with('success_message', 'La Tienda se agregó con éxito.');
-
+        } catch (Exception $exception) {
+            return back()->withInput()
+                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+        }
     }
 
     /**
@@ -107,13 +89,7 @@ class StoreController extends Controller
         $stores = Store::findOrFail($id);
         $user = User::where('role_id',2)->get();
         $store = CategoryStore::all();
-
-        $relation = DB::table('categories_store')
-            ->join('stores','categories_store.id','=','stores.categorie_store_id')
-            ->join('users','stores.user_id','=','users.id')
-            ->select('users.id as user_id','users.name as name','categories_store.id as categorie_store_id','categories_store.name as category')
-            ->where('stores.id',$id)->get();
-
+        $relation = Store::with('categorystore','user')->find($id);
         return view('stores.edit',compact('store','user','stores','relation'));
     }
 
@@ -124,21 +100,20 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $stores = Store::findorFail($id);
-        $stores->user_id = $request->user_id;
-        $stores->categorie_store_id = $request->categorie_store_id;
-        $stores->name = ucwords($request->name);
-        $stores->location = ucwords($request->location);
-        $stores->email = $request->email;
-        $stores->phone = $request->phone;
-        $stores->description = $request->description;
-        $stores->save();
+        try {
+            $data = $this->getData($request);
+            $store = Store::findOrFail($id);
+            $store->update($data);
+            return redirect()->route('stores.store.index')
+                ->with('success_message', 'La Tienda se actualizo con éxito.');
 
-        return redirect()->route('stores.store.index')
-            ->with('success_message', 'La Tienda se actualizo con éxito.');
+        } catch (Exception $exception) {
 
+            return back()->withInput()
+                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+        }
     }
 
     /**
@@ -151,9 +126,6 @@ class StoreController extends Controller
     {
         try {
             $store = Store::findOrFail($id);
-//            $user = User::findOrFail($store->user_id);
-//            $user->role_id = 3;
-//            $user->save();
             $store->delete();
             return redirect()->route('stores.store.index')
                 ->with('success_message', 'La Tienda se elimino con éxito.');
@@ -162,5 +134,21 @@ class StoreController extends Controller
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Se produjo un error inesperado al intentar procesar su solicitud.']);
         }
+    }
+    protected function getData(Request $request)
+    {
+        $rules = [
+            'user_id'=>'required',
+            'categorie_store_id'=>'required',
+            'name'=> 'required|min:3|max:70|regex:([a-zA-ZñÑáéíóúÁÉÍÓÚ\pL\s])',
+            'email'=>'required|max:50|regex:([a-zA-ZñÑáéíóúÁÉÍÓÚ\pL\s])',
+            'phone'=>'required|min:7|numeric',
+            'description'=>'min:2',
+            'lat'=>'required',
+            'lng'=>'required'
+        ];
+
+        $dataStore = $request->validate($rules);
+        return $dataStore;
     }
 }

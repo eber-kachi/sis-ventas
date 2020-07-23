@@ -2,7 +2,38 @@
 
 @section('content')
    <div class="row">
-    <div class="card col-md-8">
+     <div class="col-sm-12">
+       <div class="accordion" id="accordionExample">
+         <div class="card">
+           <div class="card-header" id="headingOne">
+             <h2 class="mb-0">
+               <button class="btn btn-link btn-block text-left " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                 <i class="fa fa-filter" aria-hidden="true"></i>
+                 <span>Busqueda por Categoria</span>
+               </button>
+             </h2>
+           </div>
+           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+             <div class="card-body">
+               <div class="panel-body">
+                 <ul class="nav nav-pills " id="tabs_2" role="tablist">
+                   @foreach($categoryStore as $item)
+                     <div class="col-lg-3 col-md-6">
+                       <a  href="{{route('stores.store.indexStore',$item->id)}}" class="btn btn-icon-clipboard" role="button">
+                         <div>
+                           <span>{{$item->name}}</span>
+                         </div>
+                       </a>
+                     </div>
+                   @endforeach
+                 </ul>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+    <div class="card col-md-12">
       <!-- Card header -->
       @if(Session::has('success_message'))
         <div class="alert alert-success">
@@ -22,7 +53,8 @@
 
         <div class="btn-group btn-group-sm float-right" role="group">
           <a href="{{route('stores.store.create')}}" class="btn btn-success mb-md-1" title="Editar Categoria">
-            <span class="fas fa-pencil-alt" > Añadir Tienda</span>
+            <i class="fas fa-pencil-alt"></i>
+            <span class=""> Añadir Tienda</span>
           </a>
         </div>
       </div>
@@ -34,6 +66,7 @@
             <tr>
               <th scope="col" class="sort" data-sort="name">Tienda</th>
               <th scope="col" class="sort" data-sort="budget">Usuario</th>
+              <th scope="col" class="sort" data-sort="budget">Correo Electronico</th>
               <th scope="col" class="sort" data-sort="status">Telefono</th>
               <th scope="col" class="sort" data-sort="status"></th>
               <th scope="col" class="sort" data-sort="status"></th>
@@ -49,7 +82,8 @@
                     </div>
                   </div>
                 </th>
-                <td>{{$item->user}}</td>
+                <td> {{optional($item->user)->name}}</td>
+                <td> {{$item->email}}</td>
                 <td>{{$item->phone}}</td>
                 <td><a href="{{route('stores.store.edit',$item->id)}}" class="btn btn-primary mb-md-1" title="Editar Categoria">
                     <span class="fas fa-pencil-alt" ></span>
@@ -72,25 +106,6 @@
       </div>
     </div>
     </div>
-     <div class="col-sm-4">
-       <div class="card card-responsive">
-         <!-- Card header -->
-         <div class="card-header border-0">
-           <h3 class="mb-0">Categoria</h3>
-         </div>
-         <!-- Light table -->
-         <div class="panel panel-default">
-           <div class="panel-body">
-             @foreach($categoryStore as $item)
-               <ul class="list-group">
-                 <li class="list-group-item "><a href="{{route('stores.store.indexStore',$item->id)}}">{{$item->name}}</a></li>
-               </ul>
-             @endforeach
-           </div>
-         </div>
-         <!-- Card footer -->
-       </div>
-     </div>
   </div>
 
 @endsection

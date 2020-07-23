@@ -34,9 +34,11 @@ class Store extends Model
                   'user_id',
                   'categorie_store_id',
                   'name',
-                  'location',
                   'email',
-                  'phone'
+                  'phone',
+                  'description',
+                  'lat',
+                  'lng'
               ];
 
     /**
@@ -60,7 +62,7 @@ class Store extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User','user_id','id');
+        return $this->belongsTo('App\User','user_id','id');
     }
 
     /**

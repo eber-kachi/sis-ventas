@@ -18,10 +18,11 @@ class CreateStoresTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('categorie_store_id')->nullable();
             $table->string('name')->nullable();
-            $table->string('location')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('description')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('lng')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('categorie_store_id')->references('id')->on('categories_store')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

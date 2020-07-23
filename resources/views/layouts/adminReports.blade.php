@@ -18,6 +18,10 @@
   <link type="text/css" href="{{ asset('css/argon.css')}}" rel="stylesheet">
   <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDwyWxo5cihMXd03ax-z0HGAXDIZIxTyQ"></script>
+{{--  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSrSPj0lv0LbihvTxG3MJ-E90kfuXUnLY&callback=initMap&libraries=&v=weekly"--}}
+{{--           defer--}}
+{{--  ></script>--}}
 </head>
 
 <body>
@@ -193,6 +197,7 @@
 </script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 @yield('script')
 </body>
 </html>
