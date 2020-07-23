@@ -19,8 +19,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(25);
-
+        $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
 
@@ -31,7 +30,6 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-
         return view('categories.create');
     }
 
@@ -42,13 +40,19 @@ class CategoriesController extends Controller
      *
      * @return Illuminate\Http\RedirectResponse | Illuminate\Routing\Redirector
      */
-    public function store(CategoriesRequest $request)
+    public function store(Request $request)
     {
-        $categoriaCrear = new Category();
-        $categoriaCrear->name = ucwords($request->name);
-        $categoriaCrear->save();
+        try {
+            $data = $this->getData($request);
+            Category::create($data);
             return redirect()->route('categories.category.index')
                 ->with('success_message', 'La categoría se agregó con éxito.');
+
+        } catch (Exception $exception) {
+
+            return back()->withInput()
+                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+        }
     }
 
     /**
@@ -90,12 +94,18 @@ class CategoriesController extends Controller
      */
     public function update($id, CategoriesRequest $request)
     {
+        try {
+            $data = $this->getData($request);
             $category = Category::findOrFail($id);
-            $category->name = $request->name;
-            $category->save();
-
+            $category->update($data);
             return redirect()->route('categories.category.index')
                 ->with('success_message', 'La categoría se actualizo con éxito.');
+
+        } catch (Exception $exception) {
+
+            return back()->withInput()
+                ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
+        }
     }
 
     /**
@@ -130,7 +140,7 @@ class CategoriesController extends Controller
     protected function getData(Request $request)
     {
         $rules = [
-                'name' => 'required|string|min:1|max:3',
+            'name'=> 'required|min:3|max:25|regex:([a-zA-ZñÑáéíóúÁÉÍÓÚ\pL\s])',
         ];
 
         $data = $request->validate($rules);

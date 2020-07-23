@@ -1,6 +1,7 @@
 @extends('layouts.adminReports')
 
 @section('content')
+  <div class="row">
       <div class="col-sm-5">
         <div class="card card-responsive">
           <!-- Card header -->
@@ -85,6 +86,7 @@
           </div>
         </div>
       </div>
+  </div>
 @endsection
 @section('script')
   <script>
